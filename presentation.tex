@@ -1,0 +1,66 @@
+
+\documentclass{beamer}
+\usetheme{metropolis}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+\title{Dynamic Searchable Encryption in Very-Large Databases : Data Structures and Implementation}
+\subtitle{David Cash, Joseph Jaeger, Stanislaw Jarecki, Charanjit Jutla, Hugo Krawczyk, Marcel-Catalan Rosu and Michael Steiner}
+
+\author{Sajin Sasy}
+\institute{University of Waterloo}
+
+\input{style}
+
+
+\begin{document}
+\maketitle
+\section{Introduction}
+
+\begin{frame}{Introduction}
+	TBDL : Introduction slides 
+\end{frame}
+
+\section{Definitions and Tools}
+\begin{frame}{$\PRF$}
+\begin{definition}[1] An algorithm $\F$ is a variable-input length pseudorandom function if for all efficient $\A$, the function
+\begin{center}
+$\Adv^\prf_{\F,\A} = \Pr$[$\PRFReal^\A_\F(\lambda)=1$] - $\Pr$[$\PRFRand^\A_\F(\lambda)=1$]
+\end{center}
+is a negligible function
+\end{definition}
+\vfill
+\end{frame}
+
+\begin{frame}{Encryption Schema $\pi$}
+\begin{definition}[2] An encryption schema $\pi$ = ($\Enc,\Dec$) has pseudorandom ciphertexts under chosen-plaintext attack if for all efficient $\A$, the function  
+\begin{center}
+$\Adv^\indrcpa_{\pi,\A} = \Pr$[$\RCPAReal^\A_\pi(\lambda)=1$] - $\Pr$[$\RCPARand^\A_\pi(\lambda)=1$]
+\end{center}
+is a negligible function
+\end{definition}
+\vfill
+\end{frame}
+
+\begin{frame}{$\PRFReal,\PRFRand,\RCPAReal,\RCPARand$}
+
+%TO-DO : Insert fig2 here and FIND fig for tradition PRF and CPA ?Be careful with this.
+\end{frame}
+
+\begin{frame}{$\SSECor$}
+\begin{definition}[3] An SSE schema is correct if for all efficient $\A$ : 
+\begin{center}
+$\Adv^\ssecor_{\pi,\A} = \Pr$[$\SSECor^\A_\pi(\lambda)=1$]
+\end{center}
+is a negligible function
+\end{definition}
+\vfill
+\end{frame}
+
+\section{Static Constructions}
+
+\begin{frame}{}
+\end{frame}
+
+
+\end{document}
