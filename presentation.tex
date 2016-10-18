@@ -2,7 +2,7 @@
 \documentclass{beamer}
 \usetheme{metropolis}
 \usepackage{graphicx}
-\graphicspath{ {images/} }
+\graphicspath{{images/}}
 
 \title{Dynamic Searchable Encryption in Very-Large Databases : Data Structures and Implementation}
 \subtitle{David Cash, Joseph Jaeger, Stanislaw Jarecki, Charanjit Jutla, Hugo Krawczyk, Marcel-Catalan Rosu and Michael Steiner}
@@ -23,7 +23,7 @@
 
 \section{Definitions and Tools}
 \begin{frame}{$\PRF$}
-\begin{definition}[1] An algorithm $\F$ is a variable-input length pseudorandom function if for all efficient $\A$, the function
+\begin{definition}[1] An algorithm $\F$ is a variable-input-length pseudorandom function if for all efficient $\A$, the function
 \begin{center}
 $\Adv^\prf_{\F,\A} = \Pr$[$\PRFReal^\A_\F(\lambda)=1$] - $\Pr$[$\PRFRand^\A_\F(\lambda)=1$]
 \end{center}
@@ -43,8 +43,34 @@ is a negligible function
 \end{frame}
 
 \begin{frame}{$\PRFReal,\PRFRand,\RCPAReal,\RCPARand$}
-
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm, height=2.5cm]{fig2} \\
+\caption{D.Cash's $\PRFReal,\PRFRand,\RCPAReal,\RCPARand$}
 %TO-DO : Insert fig2 here and FIND fig for tradition PRF and CPA ?Be careful with this.
+\end{figure}
+\includegraphics[width=10cm, height=2.5cm]{fig5}
+\end{frame}
+
+\begin{frame}{Notations}
+\begin{itemize}
+\item A database is $\DB$ = $(\id_\si,\W_\si)^\sd_{\si=1}$ 
+is a $\sd$-tuple of identifier/keyword-set pairs, where $\id_\si \in \ooo^\lambda$ and $\W_\si \subseteq \ooo^*$
+\item $\W = \cup^\sd_{\si=1} \W_\si$
+\item For a keyword $\sw$, $\DB(\sw)$ is {$\id_\si: \sw \in \W_si$}
+\item $\sm = |\W|$ and $\N = \sigma_{\sw \in \W}|\DB(\sw)|$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$\SSE$ Definition}
+A dynamic searchable symmetric encryption scheme $\pi$ consists of an algorithm $\Setup$ and protocols $\Search$ and $\Update$ between the client and server\footnote{Static is the same without the $\Update$}.
+\begin{itemize}
+\item $(\K,\EDB) \leftarrow \Setup(\DB)$
+\item $\Search$ : client takes $\K$ and query $\sw \in \ooo^{\lambda}$, server takes  as input $\EDB$. The server outputs a set of identifiers and the client has no output.
+$(\V;\tau) \leftarrow \Search(\K,\sw,\EDB)$
+\item $\Update$ : client takes as input $\K$, an operation $\op \in \{\add,\del,\editp,\editm\}$, a file identifier $\id$ and a set $\W_\id$ of keywords.
+$(\EDB';\tau) \leftarrow \Search(\K,\op,\id,\EDB)$
+\end{itemize}
 \end{frame}
 
 \begin{frame}{$\SSECor$}
@@ -52,9 +78,13 @@ is a negligible function
 \begin{center}
 $\Adv^\ssecor_{\pi,\A} = \Pr$[$\SSECor^\A_\pi(\lambda)=1$]
 \end{center}
-is a negligible function
+is a negligible function\footnote{Adversary is restricted to never add a duplicate identifier, add redundant keyword to an existing identifier, delete with currently non-existent identifier or delete a keyword from an identifier that does not match it}.
 \end{definition}
 \vfill
+\end{frame}
+
+\begin{frame}{}
+
 \end{frame}
 
 \section{Static Constructions}
